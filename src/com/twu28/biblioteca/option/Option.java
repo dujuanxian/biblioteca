@@ -6,7 +6,7 @@ public abstract class Option {
     static final int BOOK_LIST = 1;
     static final int COLLECTION_LIST = 2;
     static final int LIBRARY_NUMBER = 3;
-    static final int QUIT = 4;
+    static final int QUIT_APPLICATION = 4;
 
     public static Option createOption(int optionNumber, Library library) {
         switch (optionNumber) {
@@ -16,7 +16,7 @@ public abstract class Option {
                 return new CheckLibraryNumber(library);
             case COLLECTION_LIST:
                 return new ShowCollectionList(library);
-            case QUIT:
+            case QUIT_APPLICATION:
                 return new QuitApplication(library);
             default:
                 throw new IllegalArgumentException("Ignore option number");

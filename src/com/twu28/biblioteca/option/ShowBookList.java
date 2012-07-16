@@ -21,10 +21,31 @@ class ShowBookList extends Option {
     }
 
     private void reserveBook() {
-        System.out.println("Input the number of the book to reserve:");
+        System.out.println("Input the number of book to reserve(input '0' back to option menu):");
+        int inputNumber = getInputNumber();
+        while (!isValidNumberOfBookList(inputNumber)) {
+            System.out.println(inputNumber + " is not a valid number, please input the number of " +
+                    "book again or input '0' back to the option menu ");
+            inputNumber = getInputNumber();
+        }
+        if (0 != inputNumber)
+            reserveSelectedBook(inputNumber);
+    }
+
+    private int getInputNumber() {
+        return Command.getCommand();
+    }
+
+    private void reserveSelectedBook(int inputNumber) {
         Reservation reservation = new Reservation(library);
-        Book selectedBook = reservation.selectBook(Command.getCommand());
+        Book selectedBook = reservation.selectBook(inputNumber);
         reservation.reserveBook(selectedBook);
+    }
+
+    private boolean isValidNumberOfBookList(int inputNumber) {
+        if (inputNumber >= 0 && inputNumber <= library.getBookList().size())
+            return true;
+        return false;
     }
 
     private void showAllBooks() {
