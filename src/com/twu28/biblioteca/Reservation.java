@@ -1,19 +1,19 @@
 package com.twu28.biblioteca;
 
-class Reservation {
+public class Reservation {
     private Library library;
 
     public Reservation(Library library) {
         this.library = library;
     }
 
-    Book selectBook(int number) {
+    public Book selectBook(int number) {
         if (isValidBookNumber(number))
             return library.getBookList().get(number - 1);
         return null;
     }
 
-    void reserveBook(Book book) {
+    public void reserveBook(Book book) {
         if (isValidBook(book))
             reserveValidBook(book);
         else

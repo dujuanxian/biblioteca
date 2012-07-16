@@ -1,21 +1,22 @@
 package com.twu28.biblioteca;
 
+import com.twu28.biblioteca.option.Option;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-class Library {
+public class Library {
     private List<Book> bookList = new ArrayList<Book>();
     private List<Book> collectionList = new ArrayList<Book>();
     private int optionNumber;
-    static ColorOutput colorOutput = new ColorOutput();
+    public static ColorOutput colorOutput = new ColorOutput();
 
-    public Library(){
+    public Library() {
         bookList.addAll(new BookDataBase().getBookList());
     }
 
-    void showMenuOptions(){
+    void showMenuOptions() {
         startApplication();
         selectOptionNumber();
         runMenuOption();
@@ -29,12 +30,12 @@ class Library {
         colorOutput.println("1: View all the books", Color.LIGHT_GRAY, Color.BLACK);
         colorOutput.println("2: View collections", Color.LIGHT_GRAY, Color.BLACK);
         colorOutput.println("3: Check Library Number", Color.LIGHT_GRAY, Color.BLACK);
-        colorOutput.println("4: Quit", Color.LIGHT_GRAY, Color.BLACK);
+        colorOutput.println("4: QuitApplication Application", Color.LIGHT_GRAY, Color.BLACK);
     }
 
-    private void runMenuOption(){
-        Option option = Option.createOption(optionNumber);
-        option.run(this);
+    private void runMenuOption() {
+        Option option = Option.createOption(optionNumber, this);
+        option.run();
     }
 
     private void selectOptionNumber() {

@@ -2,29 +2,27 @@ package com.twu28.biblioteca;
 
 import enigma.console.TextAttributes;
 import enigma.core.Enigma;
+
 import java.awt.*;
 
-class ColorOutput {
+public class ColorOutput {
     private static final enigma.console.Console s_console;
 
-    public void println( String str, Color frontColor, Color backgroundColor)
-    {
+    public void println(String str, Color frontColor, Color backgroundColor) {
         TextAttributes textAttributes = new TextAttributes(frontColor, backgroundColor);
         s_console.setTextAttributes(textAttributes);
         System.out.println(str);
         s_console.setTextAttributes(new TextAttributes(Color.WHITE, Color.BLACK));
     }
 
-    public void print( String str, Color frontColor, Color backgroundColor)
-    {
+    public void print(String str, Color frontColor, Color backgroundColor) {
         TextAttributes textAttributes = new TextAttributes(frontColor, backgroundColor);
         s_console.setTextAttributes(textAttributes);
         System.out.print(str);
         s_console.setTextAttributes(new TextAttributes(Color.WHITE, Color.BLACK));
     }
 
-    static
-    {
+    static {
         s_console = Enigma.getConsole();
     }
 
