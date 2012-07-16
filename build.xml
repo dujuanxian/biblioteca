@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="biblioteca" default="run" basedir=".">
+
+    <property name="src" value="src"/>
+    <property name="test" value="test"/>
+    <property name="dest" value="dest"/>
+    <property name="lib" value="lib"/>
+    <property name="biblioteca_jar" value="biblioteca.jar"/>
+    <property name="main-class" value="com.twu28.biblioteca.Application"/>
+
+    <path id="lib_classpath">
+        <fileset dir="${lib}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="init">
+        <mkdir dir="${dest}"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac encoding="utf-8" srcdir="${src}" destdir="${dest}" includeantruntime="false">
+            <classpath refid="lib_classpath"/>
+        </javac>
+
+        <javac encoding="utf-8" srcdir="${test}" destdir="${dest}" includeantruntime="false">
+            <classpath refid="lib_classpath"/>
+        </javac>
+    </target>
+
+    <target name="junit" depends="compile">
+        <junit printsummary="true">
+            <classpath >
+                <pathelement path="${dest}"/>
+                <fileset dir="${lib}">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+            <batchtest fork="yes" >
+                <fileset dir="${test}">
+                    <include name="**/*Test.java"/>
+                    <exclude name="**/AllTests.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+    <target name="build" depends="junit">
+        <jar jarfile="${biblioteca_jar}" basedir="${dest}">
+            <manifest>
+                <attribute name="Main-Class" value="${main-class}"/>
+                <attribute name="Class-Path" value=". lib/enigma-all_en_US.jar lib/enigma-console.jar
+                lib/enigma-i18n.jar lib/enigma-shell.jar lib/junit-4.5.jar lib/junit-4.10.jar
+                lib/junit.jar" />
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="build">
+        <java fork="true" jar="${biblioteca_jar}" />
+    </target>
+
+    <target name="clean">
+        <delete dir="${dest}" />
+        <delete file="${biblioteca_jar}"/>
+    </target>
+
+</project>

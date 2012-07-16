@@ -30,7 +30,7 @@ public class Library {
         colorOutput.println("1: View all the books", Color.LIGHT_GRAY, Color.BLACK);
         colorOutput.println("2: View collections", Color.LIGHT_GRAY, Color.BLACK);
         colorOutput.println("3: Check Library Number", Color.LIGHT_GRAY, Color.BLACK);
-        colorOutput.println("4: QuitApplication Application", Color.LIGHT_GRAY, Color.BLACK);
+        colorOutput.println("4: Quit Application", Color.LIGHT_GRAY, Color.BLACK);
     }
 
     private void runMenuOption() {
