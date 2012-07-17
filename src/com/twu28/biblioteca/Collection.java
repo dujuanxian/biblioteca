@@ -5,8 +5,14 @@ import java.beans.beancontext.BeanContextMembershipEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Can you find a better name for Collection (other than CollectionOption please :)
+ */
 class Collection extends Option {
 
+    /*
+     * State is the root of all evil (well, almost)
+     */
     private Library library;
 
     void run(Library library) {

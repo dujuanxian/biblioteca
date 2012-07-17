@@ -9,7 +9,12 @@ import java.util.List;
 public class Library {
     private List<Book> bookList = new ArrayList<Book>();
     private List<Book> collectionList = new ArrayList<Book>();
+
+    /*
+     * Is optionNumber required? Could there be a different design?
+     */
     private int optionNumber;
+
     public static ColorOutput colorOutput = new ColorOutput();
 
     public Library() {
@@ -17,6 +22,11 @@ public class Library {
     }
 
     void showMenuOptions() {
+        /*
+         * Good separation of steps.
+         *
+         * Separation of concerns is *the* single most important guideline when building IT systems.
+         */
         startApplication();
         selectOptionNumber();
         runMenuOption();
@@ -38,6 +48,9 @@ public class Library {
         option.run();
     }
 
+    /*
+     * Which price is paid for private visibility?
+     */
     private void selectOptionNumber() {
         System.out.println("Input the number of the menu option:");
         optionNumber = Command.getCommand();
