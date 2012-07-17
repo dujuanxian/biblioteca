@@ -1,5 +1,7 @@
 package com.twu28.biblioteca;
 
+import java.awt.*;
+
 public class Reservation {
     private Library library;
 
@@ -29,17 +31,16 @@ public class Reservation {
     }
 
     private void notifyFailedReservation() {
-        System.out.println("Sorry we don't have that book yet.");
-
+        Library.colorOutput.println("Sorry we don't have that book yet.", Color.RED, Color.BLACK);
     }
 
     private void reserveValidBook(Book book) {
-        library.getCollectionList().add(book);
+        library.addBookToCollectionList(book);
         notifySuccessReservation();
     }
 
     private void notifySuccessReservation() {
-        System.out.println("Thank You! Enjoy the book.");
+        Library.colorOutput.println("Thank You! Enjoy the book.", Color.RED, Color.BLACK);
     }
 
 }

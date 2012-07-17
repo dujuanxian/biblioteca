@@ -24,8 +24,8 @@ class ShowBookList extends Option {
         System.out.println("Input the number of book to reserve(input '0' back to option menu):");
         int inputNumber = getInputNumber();
         while (!isValidNumberOfBookList(inputNumber)) {
-            System.out.println(inputNumber + " is not a valid number, please input the number of " +
-                    "book again or input '0' back to the option menu ");
+            Library.colorOutput.println(inputNumber + " is not a valid number, please input the number of " +
+                    "book again or input '0' back to the option menu ", Color.RED, Color.BLACK);
             inputNumber = getInputNumber();
         }
         if (0 != inputNumber)

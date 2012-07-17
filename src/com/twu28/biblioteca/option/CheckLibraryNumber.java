@@ -2,6 +2,8 @@ package com.twu28.biblioteca.option;
 
 import com.twu28.biblioteca.Library;
 
+import java.awt.*;
+
 class CheckLibraryNumber extends Option {
 
     private Library library;
@@ -19,6 +21,6 @@ class CheckLibraryNumber extends Option {
     }
 
     private void showCheckNotification() {
-        System.out.println("Please talk to Librarian. Thank you.");
+        Library.colorOutput.println("Please talk to Librarian. Thank you.", Color.RED, Color.BLACK);
     }
 }

@@ -23,7 +23,7 @@ public class Library {
     }
 
     void showWelcomeInterface() {
-        System.out.println("Welcome to the Bilioteca Library.");
+        colorOutput.println("Welcome to the Bilioteca Library.", Color.RED, Color.BLACK);
     }
 
     private void startApplication() {
@@ -49,5 +49,12 @@ public class Library {
 
     public List<Book> getCollectionList() {
         return collectionList;
+    }
+
+    public void addBookToCollectionList(Book book) {
+        if (!collectionList.contains(book))
+            collectionList.add(book);
+        else
+            colorOutput.println("The book is already reserved!", Color.RED, Color.BLACK);
     }
 }
