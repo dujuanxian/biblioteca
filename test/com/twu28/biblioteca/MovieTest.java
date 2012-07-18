@@ -29,7 +29,7 @@ public class MovieTest {
     }
     @Test
     public void ratingOfMovieAfterRated1(){
-        movie.setRate();
+        movie.setRating(1);
         assertThat(movie.getRating(), is("1"));
     }
 }

@@ -9,6 +9,7 @@ import java.util.List;
 public class Library {
     private List<Book> bookList = new ArrayList<Book>();
     private List<Book> collectionList = new ArrayList<Book>();
+    private List<Movie> movieList = new ArrayList<Movie>();
 
     /*
      * Is optionNumber required? Could there be a different design?
@@ -19,6 +20,7 @@ public class Library {
 
     public Library() {
         bookList.addAll(new BookDataBase().getBookList());
+        movieList.addAll(new MovieDataBase().getMovieList());
     }
 
     void showMenuOptions() {
@@ -38,9 +40,10 @@ public class Library {
 
     private void startApplication() {
         colorOutput.println("1: View all the books", Color.LIGHT_GRAY, Color.BLACK);
-        colorOutput.println("2: View collections", Color.LIGHT_GRAY, Color.BLACK);
-        colorOutput.println("3: Check Library Number", Color.LIGHT_GRAY, Color.BLACK);
-        colorOutput.println("4: Quit Application", Color.LIGHT_GRAY, Color.BLACK);
+        colorOutput.println("2: View book collections", Color.LIGHT_GRAY, Color.BLACK);
+        colorOutput.println("3: View all the movies", Color.LIGHT_GRAY, Color.BLACK);
+        colorOutput.println("4: Check Library Number", Color.LIGHT_GRAY, Color.BLACK);
+        colorOutput.println("5: Quit Application", Color.LIGHT_GRAY, Color.BLACK);
     }
 
     private void runMenuOption() {
@@ -69,5 +72,9 @@ public class Library {
             collectionList.add(book);
         else
             colorOutput.println("The book is already reserved!", Color.RED, Color.BLACK);
+    }
+
+    public List<Movie> getMovieList() {
+        return movieList;
     }
 }

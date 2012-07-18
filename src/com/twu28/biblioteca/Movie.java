@@ -23,7 +23,7 @@ public class Movie {
         return rating;
     }
 
-    public void setRate() {
-        rating = "1";
+    public void setRating(int rating) {
+        this.rating = Integer.toString(rating);
     }
 }

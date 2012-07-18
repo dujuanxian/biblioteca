@@ -1,10 +1,10 @@
 package com.twu28.biblioteca;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 public class BookDataBase {
-    private Collection<Book> bookList = new ArrayList<Book>();
+    private List<Book> bookList = new ArrayList<Book>();
 
     public BookDataBase() {
         bookList.add(new Book("111", "Refactoring", "Martin Fowler"));
@@ -12,7 +12,7 @@ public class BookDataBase {
         bookList.add(new Book("333", "Clean Code", "Robert C. Martin"));
     }
 
-    public Collection<Book> getBookList() {
+    public List<Book> getBookList() {
         return bookList;
     }
 }
