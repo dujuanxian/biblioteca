@@ -9,7 +9,7 @@ import java.awt.*;
 
 class ShowBookList extends Option {
 
-    Library library;
+    private Library library;
 
     public ShowBookList(Library library) {
         this.library = library;
