@@ -50,8 +50,7 @@
             <manifest>
                 <attribute name="Main-Class" value="${main-class}"/>
                 <attribute name="Class-Path" value=". lib/enigma-all_en_US.jar lib/enigma-console.jar
-                lib/enigma-i18n.jar lib/enigma-shell.jar lib/junit-4.5.jar lib/junit-4.10.jar
-                lib/junit.jar" />
+                lib/enigma-i18n.jar lib/enigma-shell.jar lib/junit-4.10.jar" />
             </manifest>
         </jar>
     </target>

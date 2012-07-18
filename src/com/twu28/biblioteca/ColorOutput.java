@@ -14,7 +14,7 @@ public class ColorOutput {
         System.out.println(str);
         s_console.setTextAttributes(new TextAttributes(Color.WHITE, Color.BLACK));
     }
-    
+
     static {
         s_console = Enigma.getConsole();
     }
