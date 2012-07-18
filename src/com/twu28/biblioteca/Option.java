@@ -6,6 +6,9 @@ abstract class Option {
     static final int LIBRARY_NUMBER = 3;
     static final int QUIT = 4;
 
+    /*
+     * Could this be unit tested?
+     */
     static Option createOption(int optionNumber) {
         switch (optionNumber)
         {

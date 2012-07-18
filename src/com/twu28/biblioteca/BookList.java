@@ -3,8 +3,14 @@ package com.twu28.biblioteca;
 import java.awt.*;
 import java.util.List;
 
+/*
+ * Can you find a better name for BookList (other than BookListOption please :)
+ */
 class BookList extends Option{
 
+    /*
+     * Visibility? Stateful or stateless? Which is preferable?
+     */
     Library library;
 
     List<Book> getList() {

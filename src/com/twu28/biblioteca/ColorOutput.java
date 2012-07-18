@@ -15,6 +15,9 @@ public class ColorOutput {
         s_console.setTextAttributes(new TextAttributes(Color.WHITE, Color.BLACK));
     }
 
+    /*
+     * Is this code dead or alive? Is it being used?
+     */
     public void print(String str, Color frontColor, Color backgroundColor) {
         TextAttributes textAttributes = new TextAttributes(frontColor, backgroundColor);
         s_console.setTextAttributes(textAttributes);

@@ -1,4 +1,8 @@
 .idea/workspace.xml
 out/
+<<<<<<< HEAD
 dest/
+=======
+*.class
+>>>>>>> 556d90552a1295aa81baceef43d75be08c701d43
 
