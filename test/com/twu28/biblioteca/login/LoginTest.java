@@ -17,12 +17,12 @@ public class LoginTest {
     
     @Test
     public void testLoginStatusWithRightUserNameAndPassword(){
-        login.logInLibrary(new User("111-1111", "admin"));
+        login.logInLibrary("111-1111", "admin");
         assertThat(login.getLoginStatus(), is(true));
     }
     @Test
     public void testLoginStatusWithWrongUserNameAndPassword(){
-        login.logInLibrary(new User("111-1112", "aaa"));
+        login.logInLibrary("111-1112", "aaa");
         assertThat(login.getLoginStatus(), is(false));
     }
 }

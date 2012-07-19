@@ -9,9 +9,9 @@ class User {
         this.password = password;
     }
 
-    boolean match(User user) {
-        return this.username.equals(user.username) &&
-                this.password.equals(user.password);
+    boolean match(String username, String password) {
+        return this.username.equals(username) &&
+                this.password.equals(password);
     }
 
     public String getUsername() {

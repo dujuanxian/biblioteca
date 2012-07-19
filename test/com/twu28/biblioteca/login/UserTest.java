@@ -8,15 +8,15 @@ public class UserTest {
     
     @Before
     public void setup(){
-        user = new User("111-1112", "admin");
+        user = new User("111-1111", "admin");
     }
 
     @Test
     public void testUsernameAndPasswordMatchWithRightUser(){
-        user.match(new User("111-1112", "admin"));
+        user.match("111-1111", "admin");
     }
     @Test
     public void testUsernameAndPasswordNotMatchWithWrongUser(){
-        user.match(new User("111-1111", "admin"));
+        user.match("111-1111", "admin");
     }
 }

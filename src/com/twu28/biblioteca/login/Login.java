@@ -1,5 +1,8 @@
 package com.twu28.biblioteca.login;
 
+import com.twu28.biblioteca.Library;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,15 +16,27 @@ public class Login {
         userList.addAll(new UserDataBase().getUserList());
     }
 
-    public void logInLibrary(User user) {
-        if(isLogin(user))
-            loginStatus = true;
+    public void logInLibrary(String username, String password) {
+        if(isMatch(username, password)){
+            createUser(username, password);
+        } else {
+            notifyWrongLoginInfo();
+        }
     }
 
-    private boolean isLogin(User user) {
+    private void notifyWrongLoginInfo() {
+        Library.colorOutput.println("Wrong username or password!",
+                Color.RED, Color.BLACK);
+    }
+
+    private void createUser(String username, String password) {
+        loginStatus = true;
+        currentUser = new User(username, password);
+    }
+
+    private boolean isMatch(String username, String password) {
         for(User users : userList){
-            if(users.match(user)){
-                currentUser = user;
+            if(users.match(username,password)){
                 return true;
             }
         }

@@ -57,10 +57,10 @@ public class Library {
     }
 
     int getOptionNumber(Command command) {
-        int inputNumber = command.getCommand("Input the number of the menu option between 1 to "
+        int inputNumber = command.getNextInt("Input the number of the menu option between 1 to "
                 + Option.TOTAL_OPTION_NUMBER);
         while (!isValidOption(inputNumber))
-            inputNumber = command.getCommand("Wrong number, try again.");
+            inputNumber = command.getNextInt("Wrong number, try again.");
         return inputNumber;
     }
 
@@ -97,5 +97,18 @@ public class Library {
 
     public String getUserName() {
         return login.getUserName();
+    }
+
+    public void logInLibrary() {
+        Command command = new Command();
+        login.logInLibrary(inputUsername(command), inputPassword(command));
+    }
+
+    private String inputPassword(Command command) {
+        return command.getNextString("Please input your password");
+    }
+
+    private String inputUsername(Command command) {
+        return command.getNextString("Please input your username");
     }
 }

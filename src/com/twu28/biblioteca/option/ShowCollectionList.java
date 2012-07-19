@@ -9,6 +9,7 @@ import java.awt.*;
 class ShowCollectionList extends Option {
 
     public void run() {
+        Application.library.logInLibrary();
         showCollectionBooks();
     }
 

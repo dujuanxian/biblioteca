@@ -13,7 +13,6 @@ public class ShowCollectionListTest {
     @Before
     public void setup() {
         showCollectionList = new ShowCollectionList();
-        showCollectionList.run();
     }
     
     @Test

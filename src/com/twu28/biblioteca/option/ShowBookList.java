@@ -17,15 +17,26 @@ class ShowBookList extends Option {
 
     private void reserveBook() {
         int inputNumber = getBookNumber(new Command());
-        if (BACK_TO_MENU != inputNumber)
-            reserveSelectedBook(inputNumber);
+        if (!isBackToMenu(inputNumber)) {
+            if (Application.library.isLogIn()) {
+                reserveSelectedBook(inputNumber);
+            } else {
+                Application.library.logInLibrary();
+                if(Application.library.isLogIn())
+                    reserveSelectedBook(inputNumber);
+            }
+        }
+    }
+
+    private boolean isBackToMenu(int inputNumber) {
+        return BACK_TO_MENU == inputNumber;
     }
 
     private int getBookNumber(Command command) {
-        int inputNumber = command.getCommand("Input the number of book between 1 and " +
+        int inputNumber = command.getNextInt("Input the number of book between 1 and " +
                 Application.library.getBookListSize() + "(input '0' back to option menu):");
         while (!isValidOption(inputNumber))
-            inputNumber = command.getCommand("Wrong number, try again.");
+            inputNumber = command.getNextInt("Wrong number, try again.");
         return inputNumber;
     }
 
