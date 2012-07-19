@@ -1,6 +1,6 @@
 package com.twu28.biblioteca.option;
 
-import com.twu28.biblioteca.Library;
+import com.twu28.biblioteca.Application;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,14 +12,14 @@ public class ShowCollectionListTest {
 
     @Before
     public void setup() {
-        showCollectionList = new ShowCollectionList(new Library());
+        showCollectionList = new ShowCollectionList();
         showCollectionList.run();
     }
     
     @Test
     public void collectionBookNumberWithoutReservationIs0()
     {
-        int collectionNumber = showCollectionList.library.getCollectionList().size();
+        int collectionNumber = Application.library.getCollectionList().size();
         assertThat(collectionNumber, is(0));
     }
 }

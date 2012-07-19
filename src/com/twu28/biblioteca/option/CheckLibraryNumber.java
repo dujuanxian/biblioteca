@@ -6,12 +6,6 @@ import java.awt.*;
 
 class CheckLibraryNumber extends Option {
 
-    private Library library;
-
-    public CheckLibraryNumber(Library library) {
-        this.library = library;
-    }
-
     public void run() {
         checkLibraryNumber();
     }

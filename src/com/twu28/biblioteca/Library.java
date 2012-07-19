@@ -11,11 +11,6 @@ public class Library {
     private List<Book> collectionList = new ArrayList<Book>();
     private List<Movie> movieList = new ArrayList<Movie>();
 
-    /*
-     * Is optionNumber required? Could there be a different design?
-     */
-    private int optionNumber;
-
     public static ColorOutput colorOutput = new ColorOutput();
 
     public Library() {
@@ -30,7 +25,6 @@ public class Library {
          * Separation of concerns is *the* single most important guideline when building IT systems.
          */
         startApplication();
-        selectOptionNumber();
         runMenuOption();
     }
 
@@ -47,16 +41,24 @@ public class Library {
     }
 
     private void runMenuOption() {
-        Option option = Option.createOption(optionNumber, this);
+        Option option = selectMenuOption();
         option.run();
     }
 
-    /*
-     * Which price is paid for private visibility?
-     */
-    private void selectOptionNumber() {
-        System.out.println("Input the number of the menu option:");
-        optionNumber = Command.getCommand();
+    private Option selectMenuOption() {
+        return Option.createOption(getOptionNumber(new Command()));
+    }
+
+    int getOptionNumber(Command command) {
+        int inputNumber = command.getCommand("Input the number of the menu option between 1 to "
+                + Option.TOTAL_OPTION_NUMBER);
+        while (!isValidOption(inputNumber))
+            inputNumber = command.getCommand("Wrong number, try again.");
+        return inputNumber;
+    }
+
+    private boolean isValidOption(int inputNumber) {
+        return inputNumber > 0 && inputNumber <= Option.TOTAL_OPTION_NUMBER;
     }
 
     public List<Book> getBookList() {
@@ -76,5 +78,9 @@ public class Library {
 
     public List<Movie> getMovieList() {
         return movieList;
+    }
+
+    public int getBookListSize() {
+        return bookList.size();
     }
 }
