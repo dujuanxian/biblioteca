@@ -1,6 +1,8 @@
 package com.twu28.biblioteca.option;
 
 import com.twu28.biblioteca.*;
+import com.twu28.biblioteca.book.Book;
+import com.twu28.biblioteca.book.Reservation;
 
 import java.awt.*;
 

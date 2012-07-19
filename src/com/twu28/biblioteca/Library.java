@@ -1,5 +1,9 @@
 package com.twu28.biblioteca;
 
+import com.twu28.biblioteca.book.Book;
+import com.twu28.biblioteca.book.BookDataBase;
+import com.twu28.biblioteca.movie.Movie;
+import com.twu28.biblioteca.movie.MovieDataBase;
 import com.twu28.biblioteca.option.Option;
 
 import java.awt.*;

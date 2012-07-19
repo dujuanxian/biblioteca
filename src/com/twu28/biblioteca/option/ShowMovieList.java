@@ -2,7 +2,7 @@ package com.twu28.biblioteca.option;
 
 import com.twu28.biblioteca.Application;
 import com.twu28.biblioteca.Library;
-import com.twu28.biblioteca.Movie;
+import com.twu28.biblioteca.movie.Movie;
 
 import java.awt.*;
 
