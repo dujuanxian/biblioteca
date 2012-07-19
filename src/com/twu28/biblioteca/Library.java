@@ -2,6 +2,7 @@ package com.twu28.biblioteca;
 
 import com.twu28.biblioteca.book.Book;
 import com.twu28.biblioteca.book.BookDataBase;
+import com.twu28.biblioteca.login.Login;
 import com.twu28.biblioteca.movie.Movie;
 import com.twu28.biblioteca.movie.MovieDataBase;
 import com.twu28.biblioteca.option.Option;
@@ -16,10 +17,12 @@ public class Library {
     private List<Movie> movieList = new ArrayList<Movie>();
 
     public static ColorOutput colorOutput = new ColorOutput();
+    private Login login;
 
     public Library() {
         bookList.addAll(new BookDataBase().getBookList());
         movieList.addAll(new MovieDataBase().getMovieList());
+        login = new Login();
     }
 
     void showMenuOptions() {
@@ -86,5 +89,13 @@ public class Library {
 
     public int getBookListSize() {
         return bookList.size();
+    }
+
+    public boolean isLogIn() {
+        return login.getLoginStatus();
+    }
+
+    public String getUserName() {
+        return login.getUserName();
     }
 }

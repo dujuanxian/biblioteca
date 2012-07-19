@@ -1,6 +1,6 @@
 package com.twu28.biblioteca.login;
 
-public class User {
+class User {
     private String username;
     private String password;
 
@@ -12,5 +12,9 @@ public class User {
     boolean match(User user) {
         return this.username.equals(user.username) &&
                 this.password.equals(user.password);
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

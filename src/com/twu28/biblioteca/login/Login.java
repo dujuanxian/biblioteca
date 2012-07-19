@@ -6,11 +6,11 @@ import java.util.List;
 public class Login {
 
     private List<User> userList = new ArrayList<User>();
-    private boolean loginStatus;
+    private boolean loginStatus = false;
+    private User currentUser;
 
     public Login(){
         userList.addAll(new UserDataBase().getUserList());
-        loginStatus = false;
     }
 
     public void logInLibrary(User user) {
@@ -20,13 +20,21 @@ public class Login {
 
     private boolean isLogin(User user) {
         for(User users : userList){
-            if(users.match(user))
+            if(users.match(user)){
+                currentUser = user;
                 return true;
+            }
         }
         return false;
     }
 
     public boolean getLoginStatus() {
         return loginStatus;
+    }
+
+    public String getUserName() {
+        if(loginStatus)
+            return currentUser.getUsername();
+        return null;
     }
 }

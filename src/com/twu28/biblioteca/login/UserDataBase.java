@@ -3,7 +3,7 @@ package com.twu28.biblioteca.login;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDataBase {
+class UserDataBase {
     private List<User> userList = new ArrayList<User>();
     
     public UserDataBase(){
