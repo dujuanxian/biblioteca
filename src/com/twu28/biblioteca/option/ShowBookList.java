@@ -12,27 +12,27 @@ class ShowBookList extends Option {
 
     public void run() {
         showAllBooks();
-        reserveBook();
+        int inputNumber = getInputCommand(new Command());
+        if(!isBackToMenu(inputNumber) && !isLogin()){
+            logInLibrary();
+        }
+        if(isLogin())
+            new Reservation(Application.library).reserveBook(inputNumber);
     }
 
-    private void reserveBook() {
-        int inputNumber = getBookNumber(new Command());
-        if (!isBackToMenu(inputNumber)) {
-            if (Application.library.isLogIn()) {
-                reserveSelectedBook(inputNumber);
-            } else {
-                Application.library.logInLibrary();
-                if(Application.library.isLogIn())
-                    reserveSelectedBook(inputNumber);
-            }
-        }
+    private void logInLibrary() {
+        Application.library.logInLibrary();
+    }
+
+    private boolean isLogin() {
+        return Application.library.isLogIn();
     }
 
     private boolean isBackToMenu(int inputNumber) {
         return BACK_TO_MENU == inputNumber;
     }
 
-    private int getBookNumber(Command command) {
+    private int getInputCommand(Command command) {
         int inputNumber = command.getNextInt("Input the number of book between 1 and " +
                 Application.library.getBookListSize() + "(input '0' back to option menu):");
         while (!isValidOption(inputNumber))
@@ -42,12 +42,6 @@ class ShowBookList extends Option {
 
     private boolean isValidOption(int inputNumber) {
         return inputNumber >= BACK_TO_MENU && inputNumber <= Application.library.getBookListSize();
-    }
-
-    private void reserveSelectedBook(int inputNumber) {
-        Reservation reservation = new Reservation(Application.library);
-        Book selectedBook = reservation.selectBook(inputNumber);
-        reservation.reserveBook(selectedBook);
     }
 
     private void showAllBooks() {

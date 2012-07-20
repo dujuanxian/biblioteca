@@ -1,8 +1,6 @@
 package com.twu28.biblioteca.book;
 
 import com.twu28.biblioteca.Library;
-import com.twu28.biblioteca.book.Book;
-import com.twu28.biblioteca.book.Reservation;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,21 +25,37 @@ public class ReservationTest {
     }
     @Test
     public void numberOfCollectionListAfterReserveTheFirstBook() {
-        reservation.reserveBook(reservation.selectBook(1));
+        int bookNumber = 1;
+        Book book = reservation.selectBook(1);
+        if (reservation.isValidBookNumber(bookNumber))
+            reservation.reserveValidBook(book);
+        else
+            reservation.notifyFailedReservation();
         assertThat(library.getCollectionList().size(), is(1));
         assertThat(library.getCollectionList().get(0).getIsbn(), is("111"));
     }
     @Test
     public void numberOfCollectionListAfterReserve2Books() {
-        reservation.reserveBook(reservation.selectBook(1));
-        reservation.reserveBook(reservation.selectBook(2));
+        Book book1 = reservation.selectBook(1);
+        if (reservation.isValidBookNumber(1))
+            reservation.reserveValidBook(book1);
+        else
+            reservation.notifyFailedReservation();
+        Book book = reservation.selectBook(2);
+        if (reservation.isValidBookNumber(2))
+            reservation.reserveValidBook(book);
+        else
+            reservation.notifyFailedReservation();
         assertThat(library.getCollectionList().size(), is(2));
     }
 
     @Test
     public void numberOfBooksIsSelectNotAvailableBookIs0() {
         Book collectionBook = new Book("444", "", "");
-        reservation.reserveBook(collectionBook);
+        if (reservation.isValidBookNumber(1))
+            reservation.reserveValidBook(collectionBook);
+        else
+            reservation.notifyFailedReservation();
         assertThat(library.getCollectionList().size(), is(0));
     }
 

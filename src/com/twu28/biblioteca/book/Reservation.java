@@ -11,32 +11,28 @@ public class Reservation {
         this.library = library;
     }
 
-    public Book selectBook(int number) {
+    public void reserveBook(int bookNumber) {
+        if (isValidBookNumber(bookNumber))
+            reserveValidBook(selectBook(bookNumber));
+        else
+            notifyFailedReservation();
+    }
+
+    Book selectBook(int number) {
         if (isValidBookNumber(number))
             return library.getBookList().get(number - 1);
         return null;
     }
 
-    public void reserveBook(Book book) {
-        if (isValidBook(book))
-            reserveValidBook(book);
-        else
-            notifyFailedReservation();
-    }
-
-    private boolean isValidBookNumber(int number) {
+    boolean isValidBookNumber(int number) {
         return number > 0 && number <= library.getBookList().size();
     }
 
-    private boolean isValidBook(Book book) {
-        return library.getBookList().contains(book);
-    }
-
-    private void notifyFailedReservation() {
+    void notifyFailedReservation() {
         Library.colorOutput.println("Sorry we don't have that book yet.", Color.RED, Color.BLACK);
     }
 
-    private void reserveValidBook(Book book) {
+    void reserveValidBook(Book book) {
         library.addBookToCollectionList(book);
         notifySuccessReservation();
     }
