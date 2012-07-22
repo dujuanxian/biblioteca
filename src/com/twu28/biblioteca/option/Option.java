@@ -1,6 +1,6 @@
 package com.twu28.biblioteca.option;
 
-import com.twu28.biblioteca.Application;
+import com.twu28.biblioteca.user.User;
 
 abstract public class Option {
     public static final int SHOW_BOOK_LIST = 1;
@@ -28,5 +28,5 @@ abstract public class Option {
         }
     }
 
-    public abstract void run();
+    public abstract void run(User currentUser);
 }

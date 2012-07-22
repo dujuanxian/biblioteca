@@ -28,9 +28,4 @@ public class MovieTest {
     public void ratingOfMovieWithoutPreRating(){
         assertThat(movie.getRating(), is("N/A"));
     }
-    @Test
-    public void ratingOfMovieAfterRated1(){
-        movie.setRating(1);
-        assertThat(movie.getRating(), is("1"));
-    }
 }

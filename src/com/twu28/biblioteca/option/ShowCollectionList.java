@@ -2,30 +2,22 @@ package com.twu28.biblioteca.option;
 
 import com.twu28.biblioteca.Application;
 import com.twu28.biblioteca.book.Book;
-import com.twu28.biblioteca.Library;
+import com.twu28.biblioteca.user.User;
 
 import java.awt.*;
 
 class ShowCollectionList extends Option {
 
-    public void run() {
-        if(!isLogin())
-            logInLibrary();
-        showCollectionBooks();
+    public void run(User currentUser) {
+        currentUser.loginIfLoggedOut();
+        if (currentUser.isLogin())
+            showCollectionBooks(currentUser);
     }
 
-    private void logInLibrary() {
-        Application.library.logInLibrary();
-    }
-
-    private boolean isLogin() {
-        return Application.library.isLogIn();
-    }
-
-    private void showCollectionBooks() {
+    private void showCollectionBooks(User currentUser) {
         int bookID = 1;
-        for (Book collection : Application.library.getCollectionList()) {
-            Library.colorOutput.println(bookID + ": <" + collection.getTitle() + ">, " + collection.getAuthor(),
+        for (Book collection : currentUser.getCollectionList()) {
+            Application.colorOutput.println(bookID + ": <" + collection.getTitle() + ">, " + collection.getAuthor(),
                     Color.GREEN, Color.BLACK);
             bookID++;
         }

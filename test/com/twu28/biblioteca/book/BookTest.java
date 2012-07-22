@@ -1,6 +1,5 @@
 package com.twu28.biblioteca.book;
 
-import com.twu28.biblioteca.book.Book;
 import org.junit.Before;
 import org.junit.Test;
 

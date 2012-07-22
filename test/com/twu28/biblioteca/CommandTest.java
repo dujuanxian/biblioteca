@@ -23,7 +23,7 @@ public class CommandTest {
     public void getOptionNumberWithinBoundsOf1ToTotalOptionNumber(){
         when(commandMock.getNextInt("Input the number of the menu option between 1 to " +
                 +Option.TOTAL_OPTION_NUMBER)).thenReturn(3);
-        assertThat(Application.library.getOptionNumber(commandMock), is(3));
+        assertThat(Application.myLibrary.getOptionNumber(commandMock), is(3));
     }
 
     @Test
@@ -32,7 +32,7 @@ public class CommandTest {
                 +Option.TOTAL_OPTION_NUMBER)).thenReturn(99);
         when(commandMock.getNextInt("Wrong number, try again.")).thenReturn(3);
 
-        Application.library.getOptionNumber(commandMock);
+        Application.myLibrary.getOptionNumber(commandMock);
 
         verify(commandMock).getNextInt("Wrong number, try again.");
     }

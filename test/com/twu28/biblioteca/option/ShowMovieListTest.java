@@ -1,7 +1,7 @@
 package com.twu28.biblioteca.option;
 
-import com.twu28.biblioteca.Application;
 import com.twu28.biblioteca.Library;
+import com.twu28.biblioteca.movie.MovieList;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,6 +18,6 @@ public class ShowMovieListTest {
     
     @Test
     public void movieNumberIs15AfterInitialization(){
-        assertThat(Application.library.getMovieList().size(), is(15));
+        assertThat(MovieList.getMovieList().size(), is(15));
     }
 }

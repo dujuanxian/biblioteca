@@ -3,10 +3,10 @@ package com.twu28.biblioteca.movie;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieDataBase {
+class MovieDataBase {
     private List<Movie> movieList = new ArrayList<Movie>();
 
-    public MovieDataBase() {
+    MovieDataBase() {
         movieList.add(new Movie("SholayRamesh", "Sippy", "N/A"));
         movieList.add(new Movie("The Bourne Supremacy", "Paul Greengrass", "7"));
         movieList.add(new Movie("Titanic", "James Cameron", "10"));
@@ -24,7 +24,7 @@ public class MovieDataBase {
         movieList.add(new Movie("Oceans", "Jacques Cluzaud", "10"));
     }
 
-    public List<Movie> getMovieList() {
+    List<Movie> getMovieList() {
         return movieList;
     }
 }
