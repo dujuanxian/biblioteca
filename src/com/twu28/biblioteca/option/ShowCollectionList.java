@@ -8,6 +8,9 @@ import java.awt.*;
 
 class ShowCollectionList extends Option {
 
+    /*
+    * Would this be an automatic login?
+    */
     public void run(User currentUser) {
         currentUser.login();
         if (currentUser.isLogin())

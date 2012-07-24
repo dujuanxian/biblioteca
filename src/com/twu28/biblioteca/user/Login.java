@@ -4,6 +4,10 @@ import com.twu28.biblioteca.Application;
 
 import java.awt.*;
 
+/*
+ * Why did you choose to have both a Login class and a User class?
+ *
+ */
 class Login {
     boolean loginStatus = false;
 
@@ -15,10 +19,16 @@ class Login {
     }
 
     boolean getLoginStatus() {
+        /*
+        * What is the purpose of this method, where are you using it?
+        */
         return loginStatus;
     }
 
     private void notifyWrongLoginInfo() {
+        /*
+        * Why not tell the user which one of the two is wrong?
+        */
         Application.colorOutput.println("Wrong username or password!",
                 Color.RED, Color.BLACK);
     }
