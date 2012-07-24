@@ -1,42 +1,21 @@
 package com.twu28.biblioteca.user;
 
 import com.twu28.biblioteca.Application;
-import com.twu28.biblioteca.Command;
 
 import java.awt.*;
 
 class Login {
-    private boolean loginStatus = false;
-    private String inputUsername;
-    private String inputPassword;
+    boolean loginStatus = false;
 
-    void login() {
-        inputUsernameAndPassword();
-        checkInputUsernameAndPassword();
-    }
-
-    String getInputUsername() {
-        return inputUsername;
-    }
-
-    String getInputPassword() {
-        return inputPassword;
+    void login(String inputUsername, String inputPassword) {
+        if (isValidUsernameAndPassword(inputUsername, inputPassword))
+            loginStatus = true;
+        else
+            notifyWrongLoginInfo();
     }
 
     boolean getLoginStatus() {
         return loginStatus;
-    }
-
-    private void inputUsernameAndPassword() {
-        inputUsername = new Command().getNextString("Please input your username");
-        inputPassword = new Command().getNextString("Please input your password");
-    }
-
-    void checkInputUsernameAndPassword() {
-        if (isValidUsernameAndPassword())
-            loginStatus = true;
-        else
-            notifyWrongLoginInfo();
     }
 
     private void notifyWrongLoginInfo() {
@@ -44,7 +23,7 @@ class Login {
                 Color.RED, Color.BLACK);
     }
 
-    private boolean isValidUsernameAndPassword() {
+    private boolean isValidUsernameAndPassword(String inputUsername, String inputPassword) {
         for (User userList : UserList.getUserList()) {
             if (userList.equals(inputUsername, inputPassword))
                 return true;

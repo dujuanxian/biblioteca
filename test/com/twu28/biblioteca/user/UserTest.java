@@ -31,5 +31,12 @@ public class UserTest {
         user.addBookToCollection(1);
         assertThat(user.getCollectionList().size(), is(1));
     }
+    @Test
+    public void usernameAndPasswordAfterLogin(){
+        user.loginWithInputUserInfo("111-1111", "admin");
+        assertThat(user.isLogin(), is(true));
+        assertThat(user.getUsername(), is("111-1111"));
+        assertThat(user.getPassword(), is("admin"));
+    }
 
 }

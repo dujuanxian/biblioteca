@@ -9,12 +9,12 @@ import java.awt.*;
 class ShowCollectionList extends Option {
 
     public void run(User currentUser) {
-        currentUser.loginIfLoggedOut();
+        currentUser.login();
         if (currentUser.isLogin())
             showCollectionBooks(currentUser);
     }
 
-    private void showCollectionBooks(User currentUser) {
+    void showCollectionBooks(User currentUser) {
         int bookID = 1;
         for (Book collection : currentUser.getCollectionList()) {
             Application.colorOutput.println(bookID + ": <" + collection.getTitle() + ">, " + collection.getAuthor(),

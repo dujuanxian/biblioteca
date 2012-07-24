@@ -1,5 +1,6 @@
 package com.twu28.biblioteca.user;
 
+import com.twu28.biblioteca.Command;
 import com.twu28.biblioteca.book.Book;
 import com.twu28.biblioteca.book.BookList;
 
@@ -25,13 +26,33 @@ public class User {
         return collectionList;
     }
 
-    public void loginIfLoggedOut() {
-        if (!isLogin())
-            login.login();
+    public void login() {
+        loginWithInputUserInfo(inputUsername(), inputPassword());
+    }
+
+    void loginWithInputUserInfo(String inputUsername, String inputPassword) {
+        loginIfLogout(inputUsername, inputPassword);
+        initializeUser(inputUsername, inputPassword);
+    }
+
+    private void initializeUser(String inputUsername, String inputPassword) {
         if (isLogin()) {
-            this.username = login.getInputUsername();
-            this.password = login.getInputPassword();
+            this.username = inputUsername;
+            this.password = inputPassword;
         }
+    }
+
+    private void loginIfLogout(String inputUsername, String inputPassword) {
+        if (!isLogin())
+            login.login(inputUsername, inputPassword);
+    }
+
+    private String inputPassword() {
+        return new Command().getNextString("Please input your password");
+    }
+
+    private String inputUsername() {
+        return new Command().getNextString("Please input your username");
     }
 
     public boolean isLogin() {
@@ -44,5 +65,9 @@ public class User {
 
     void addBookToCollection(int bookNumber) {
         collectionList.add(BookList.getBookList().get(bookNumber - 1));
+    }
+
+    String getPassword() {
+        return password;
     }
 }

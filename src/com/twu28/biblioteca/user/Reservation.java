@@ -9,7 +9,7 @@ import java.awt.*;
 public class Reservation {
 
     public void reserveBook(int bookNumber, User user) {
-        user.loginIfLoggedOut();
+        user.login();
         if (user.isLogin()) {
             reserveBookAfterLogin(bookNumber, user);
         }
