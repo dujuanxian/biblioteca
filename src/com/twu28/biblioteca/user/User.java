@@ -18,7 +18,7 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.loginStatus =false;
+        this.loginStatus = false;
     }
 
     public String getUsername() {
@@ -30,30 +30,16 @@ public class User {
     }
 
     public void login() {
-        loginWithInputUserInfo(inputUsername());
-    }
-
-    private void loginWithInputUserInfo(String inputUsername) {
-        String inputPassword = inputPassword();
-
-        loginIfLogout(inputUsername, inputPassword);
-        initializeUser(inputUsername, inputPassword);
-    }
-
-    private void initializeUser(String inputUsername, String inputPassword) {
-        if (loginStatus) {
-            this.username = inputUsername;
-            this.password = inputPassword;
-        }
+        loginIfLogout(inputUsername(), inputPassword());
     }
 
     private void loginIfLogout(String inputUsername, String inputPassword) {
-        if (!loginStatus){
-            if (isValidUsernameAndPassword(inputUsername, inputPassword))
-                loginStatus = true;
-            else
-                notifyWrongLoginInfo();
-        }
+        if (isValidUsernameAndPassword(inputUsername, inputPassword)) {
+            loginStatus = true;
+            this.username = inputUsername;
+            this.password = inputPassword;
+        } else
+            notifyWrongLoginInfo();
     }
 
     private boolean isValidUsernameAndPassword(String inputUsername, String inputPassword) {
@@ -72,11 +58,11 @@ public class User {
                 Color.RED, Color.BLACK);
     }
 
-    private String inputPassword() {
+    private String inputUsername() {
         return new Command().getNextString("Please input your username");
     }
 
-    private String inputUsername() {
+    private String inputPassword() {
         return new Command().getNextString("Please input your password");
     }
 

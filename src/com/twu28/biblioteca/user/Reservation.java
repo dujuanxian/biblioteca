@@ -9,13 +9,20 @@ import java.awt.*;
 public class Reservation {
 
     public void reserveBook(int bookNumber, User user) {
-        user.login();
-        if (user.isLogin()) {
+        if (user.isLogin()) 
+            reserveBookIfLogin(bookNumber, user);
+        else {
             reserveBookAfterLogin(bookNumber, user);
         }
     }
 
     private void reserveBookAfterLogin(int bookNumber, User user) {
+        user.login();
+        if(user.isLogin())
+            reserveBookIfLogin(bookNumber, user);
+    }
+
+    private void reserveBookIfLogin(int bookNumber, User user) {
         if (!isValidBook(bookNumber)) {
             notifyFailedReservation();
         } else if (isReserved(bookNumber, user)) {
