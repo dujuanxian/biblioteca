@@ -1,5 +1,6 @@
 package com.twu28.biblioteca.login;
 
+import com.twu28.biblioteca.Application;
 import com.twu28.biblioteca.Library;
 
 import java.awt.*;
@@ -25,7 +26,7 @@ public class Login {
     }
 
     private void notifyWrongLoginInfo() {
-        Library.colorOutput.println("Wrong username or password!",
+        Application.colorOutput.println("Wrong username or password!",
                 Color.RED, Color.BLACK);
     }
 

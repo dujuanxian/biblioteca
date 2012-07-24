@@ -27,10 +27,12 @@ public class User {
     }
 
     public void login() {
-        loginWithInputUserInfo(inputUsername(), inputPassword());
+        loginWithInputUserInfo(inputUsername());
     }
 
-    void loginWithInputUserInfo(String inputUsername, String inputPassword) {
+    private void loginWithInputUserInfo(String inputUsername) {
+        String inputPassword = inputPassword();
+
         loginIfLogout(inputUsername, inputPassword);
         initializeUser(inputUsername, inputPassword);
     }
@@ -48,11 +50,11 @@ public class User {
     }
 
     private String inputPassword() {
-        return new Command().getNextString("Please input your password");
+        return new Command().getNextString("Please input your username");
     }
 
     private String inputUsername() {
-        return new Command().getNextString("Please input your username");
+        return new Command().getNextString("Please input your password");
     }
 
     public boolean isLogin() {
@@ -65,9 +67,5 @@ public class User {
 
     void addBookToCollection(int bookNumber) {
         collectionList.add(BookList.getBookList().get(bookNumber - 1));
-    }
-
-    String getPassword() {
-        return password;
     }
 }

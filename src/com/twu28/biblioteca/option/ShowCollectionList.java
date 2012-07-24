@@ -14,7 +14,7 @@ class ShowCollectionList extends Option {
             showCollectionBooks(currentUser);
     }
 
-    void showCollectionBooks(User currentUser) {
+    private void showCollectionBooks(User currentUser) {
         int bookID = 1;
         for (Book collection : currentUser.getCollectionList()) {
             Application.colorOutput.println(bookID + ": <" + collection.getTitle() + ">, " + collection.getAuthor(),

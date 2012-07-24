@@ -10,24 +10,22 @@ import static org.junit.Assert.assertThat;
 
 public class MovieListTest {
     private List<Movie> movieList;
-    private List<Movie> allMoviesInDataBase;
 
     @Before
     public void setup() {
         movieList = MovieList.getMovieList();
-        allMoviesInDataBase = new MovieDataBase().getMovieList();
     }
 
     @Test
     public void testFirstMovieInMovieListIsFirstMovieInMovieDataBase() {
-        assertThat(movieList.get(0).getName(), is(allMoviesInDataBase.get(0).getName()));
-        assertThat(movieList.get(0).getDirector(), is(allMoviesInDataBase.get(0).getDirector()));
-        assertThat(movieList.get(0).getRating(), is(allMoviesInDataBase.get(0).getRating()));
+        assertThat(movieList.get(0).getName(), is("SholayRamesh"));
+        assertThat(movieList.get(0).getDirector(), is("Sippy"));
+        assertThat(movieList.get(0).getRating(), is("N/A"));
     }
 
     @Test
     public void testMovieListSizeEqualsMovieDataBaseSize() {
-        assertThat(movieList.size(), is(allMoviesInDataBase.size()));
+        assertThat(movieList.size(), is(15));
     }
 
 }
