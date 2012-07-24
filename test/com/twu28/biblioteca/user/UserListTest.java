@@ -10,23 +10,21 @@ import static org.junit.Assert.assertThat;
 
 public class UserListTest {
     private List<User> userList;
-    private List<User> allUsersInDataBase;
 
     @Before
     public void setup() {
         userList = UserList.getUserList();
-        allUsersInDataBase = new UserDataBase().getUserList();
     }
 
     @Test
     public void testFirstUserInUserListIsFirstUserInUserDataBase() {
-        assertThat(userList.get(0).getUsername(), is(allUsersInDataBase.get(0).getUsername()));
-        assertThat(userList.get(0).isLogin(), is(false));
+        assertThat(userList.get(0).getUsername(), is("111-1111"));
+        assertThat(userList.get(0).loginStatus, is(false));
     }
 
     @Test
     public void testUserListSizeEqualsUserDataBaseSize() {
-        assertThat(userList.size(), is(allUsersInDataBase.size()));
+        assertThat(userList.size(), is(3));
     }
 
 }

@@ -7,7 +7,9 @@ class UserList {
     private List<User> userList = new ArrayList<User>();
     
     private UserList(){
-        userList.addAll(new UserDataBase().getUserList());
+        userList.add(new User("111-1111", "admin"));
+        userList.add(new User("111-1112", "admin"));
+        userList.add(new User("111-1113", "admin"));
     }
 
     public static List<User> getUserList() {

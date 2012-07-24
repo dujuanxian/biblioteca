@@ -13,7 +13,7 @@ public class User {
     private List<Book> collectionList = new ArrayList<Book>();
     private String username;
     private String password;
-    private boolean loginStatus;
+    boolean loginStatus;
 
     public User(String username, String password) {
         this.username = username;
