@@ -1,9 +1,11 @@
 package com.twu28.biblioteca.user;
 
+import com.twu28.biblioteca.Application;
 import com.twu28.biblioteca.Command;
 import com.twu28.biblioteca.book.Book;
 import com.twu28.biblioteca.book.BookList;
 
+import java.awt.*;
 import java.util.*;
 import java.util.List;
 
@@ -11,11 +13,12 @@ public class User {
     private List<Book> collectionList = new ArrayList<Book>();
     private String username;
     private String password;
-    private Login login = new Login();
+    private boolean loginStatus;
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+        this.loginStatus =false;
     }
 
     public String getUsername() {
@@ -38,15 +41,35 @@ public class User {
     }
 
     private void initializeUser(String inputUsername, String inputPassword) {
-        if (isLogin()) {
+        if (loginStatus) {
             this.username = inputUsername;
             this.password = inputPassword;
         }
     }
 
     private void loginIfLogout(String inputUsername, String inputPassword) {
-        if (!isLogin())
-            login.login(inputUsername, inputPassword);
+        if (!loginStatus){
+            if (isValidUsernameAndPassword(inputUsername, inputPassword))
+                loginStatus = true;
+            else
+                notifyWrongLoginInfo();
+        }
+    }
+
+    private boolean isValidUsernameAndPassword(String inputUsername, String inputPassword) {
+        for (User userList : UserList.getUserList()) {
+            if (userList.equals(inputUsername, inputPassword))
+                return true;
+        }
+        return false;
+    }
+
+    private void notifyWrongLoginInfo() {
+        /*
+        * Why not tell the user which one of the two is wrong?
+        */
+        Application.colorOutput.println("Wrong username or password!",
+                Color.RED, Color.BLACK);
     }
 
     private String inputPassword() {
@@ -55,10 +78,6 @@ public class User {
 
     private String inputUsername() {
         return new Command().getNextString("Please input your password");
-    }
-
-    public boolean isLogin() {
-        return login.getLoginStatus();
     }
 
     boolean equals(String inputUsername, String inputPassword) {
