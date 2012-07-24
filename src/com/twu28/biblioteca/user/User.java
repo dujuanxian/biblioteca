@@ -13,7 +13,7 @@ public class User {
     private List<Book> collectionList = new ArrayList<Book>();
     private String username;
     private String password;
-    boolean loginStatus;
+    private boolean loginStatus;
 
     public User(String username, String password) {
         this.username = username;
@@ -86,5 +86,9 @@ public class User {
 
     void addBookToCollection(int bookNumber) {
         collectionList.add(BookList.getBookList().get(bookNumber - 1));
+    }
+
+    public boolean isLogin() {
+        return loginStatus;
     }
 }

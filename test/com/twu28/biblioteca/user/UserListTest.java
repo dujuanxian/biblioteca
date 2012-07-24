@@ -19,7 +19,7 @@ public class UserListTest {
     @Test
     public void testFirstUserInUserListIsFirstUserInUserDataBase() {
         assertThat(userList.get(0).getUsername(), is("111-1111"));
-        assertThat(userList.get(0).loginStatus, is(false));
+        assertThat(userList.get(0).isLogin(), is(false));
     }
 
     @Test
