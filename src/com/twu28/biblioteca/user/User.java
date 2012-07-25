@@ -14,6 +14,8 @@ public class User {
     private String username;
     private String password;
     private boolean loginStatus;
+    private String inputUsername;
+    private String inputPassword;
 
     public User(String username, String password) {
         this.username = username;
@@ -30,32 +32,57 @@ public class User {
     }
 
     public void login() {
-        loginIfLogout(inputUsername(), inputPassword());
+        inputUsernameAndPassword();
+        initializeUser();
     }
 
-    private void loginIfLogout(String inputUsername, String inputPassword) {
-        if (isValidUsernameAndPassword(inputUsername, inputPassword)) {
-            loginStatus = true;
+    private void initializeUser() {
+        if (isValidUser()) {
             this.username = inputUsername;
             this.password = inputPassword;
-        } else
-            notifyWrongLoginInfo();
+            loginStatus = true;
+        }
     }
 
-    private boolean isValidUsernameAndPassword(String inputUsername, String inputPassword) {
-        for (User userList : UserList.getUserList()) {
-            if (userList.equals(inputUsername, inputPassword))
+    private void inputUsernameAndPassword() {
+        inputUsername = inputUsername();
+        inputPassword = inputPassword();
+    }
+
+    private boolean isValidUser() {
+        return isValidUsername() && isValidPassword();
+    }
+
+    private boolean isValidPassword() {
+        for (User aUser : UserList.getUserList())
+            if (aUser.isUsername(inputUsername) && aUser.isPassword(inputPassword))
                 return true;
-        }
+        notifyWrongPassword();
         return false;
     }
 
-    private void notifyWrongLoginInfo() {
-        /*
-        * Why not tell the user which one of the two is wrong?
-        */
-        Application.colorOutput.println("Wrong username or password!",
-                Color.RED, Color.BLACK);
+    private boolean isValidUsername() {
+        for (User aUser : UserList.getUserList())
+            if (aUser.isUsername(inputUsername))
+                return true;
+        notifyWrongUsername();
+        return false;
+    }
+
+    private boolean isPassword(String password) {
+        return this.password.equals(password);
+    }
+
+    private boolean isUsername(String username) {
+        return this.username.equals(username);
+    }
+
+    private void notifyWrongPassword() {
+        Application.colorOutput.println("Wrong password!", Color.RED, Color.BLACK);
+    }
+
+    private void notifyWrongUsername() {
+        Application.colorOutput.println("Wrong username!", Color.RED, Color.BLACK);
     }
 
     private String inputUsername() {
@@ -64,10 +91,6 @@ public class User {
 
     private String inputPassword() {
         return new Command().getNextString("Please input your password");
-    }
-
-    boolean equals(String inputUsername, String inputPassword) {
-        return this.username.equals(inputUsername) && this.password.equals(inputPassword);
     }
 
     void addBookToCollection(int bookNumber) {
