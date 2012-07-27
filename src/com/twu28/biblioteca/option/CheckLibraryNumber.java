@@ -5,7 +5,7 @@ import com.twu28.biblioteca.user.User;
 
 import java.awt.*;
 
-class CheckLibraryNumber extends Option {
+public class CheckLibraryNumber extends Option {
 
     public void run(User currentUser) {
         if (currentUser.isLogin())

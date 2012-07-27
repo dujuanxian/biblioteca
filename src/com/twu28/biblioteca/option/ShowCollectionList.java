@@ -6,7 +6,7 @@ import com.twu28.biblioteca.user.User;
 
 import java.awt.*;
 
-class ShowCollectionList extends Option {
+public class ShowCollectionList extends Option {
 
     /*
     * Would this be an automatic login?

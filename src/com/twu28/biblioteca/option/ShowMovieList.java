@@ -7,7 +7,7 @@ import com.twu28.biblioteca.movie.MovieList;
 
 import java.awt.*;
 
-class ShowMovieList extends Option {
+public class ShowMovieList extends Option {
 
     public void run(User currentUser){
         for (Movie movie: MovieList.getMovieList()) {

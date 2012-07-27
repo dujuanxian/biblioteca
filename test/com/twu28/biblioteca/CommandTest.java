@@ -1,6 +1,7 @@
 package com.twu28.biblioteca;
 
 import com.twu28.biblioteca.option.Option;
+import com.twu28.biblioteca.user.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -24,6 +25,20 @@ public class CommandTest {
         when(commandMock.getNextInt("Input the number of the menu option between 1 to " +
                 +Option.TOTAL_OPTION_NUMBER)).thenReturn(3);
         assertThat(Application.myLibrary.getOptionNumber(commandMock), is(3));
+    }
+    @Test
+    public void getUsernameCalledInputUserUsernameClass(){
+        User user = new User(null, null);
+        when(commandMock.getNextString("Please input your username")).thenReturn("111-1111");
+        String username = user.inputUsername(commandMock);
+        assertThat(username, is("111-1111"));
+    }
+    @Test
+    public void getPasswordCalledInputUserPasswordClass(){
+        User user = new User(null, null);
+        when(commandMock.getNextString("Please input your password")).thenReturn("admin");
+        String password = user.inputPassword(commandMock);
+        assertThat(password, is("admin"));
     }
 
     @Test

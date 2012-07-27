@@ -8,7 +8,7 @@ import com.twu28.biblioteca.user.User;
 
 import java.awt.*;
 
-class ShowBookList extends Option {
+public class ShowBookList extends Option {
 
     public void run(User currentUser) {
         showAllBooks();
@@ -24,7 +24,7 @@ class ShowBookList extends Option {
                 BookList.getBookList().size() + "(input '0' back to option menu):");
     }
 
-    private void showAllBooks() {
+    public void showAllBooks() {
         int bookID = 1;
         for (Book book : BookList.getBookList()) {
             Application.colorOutput.println(bookID + ": <" + book.getTitle() + "> " + book.getAuthor(),

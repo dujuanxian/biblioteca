@@ -1,13 +1,15 @@
 package com.twu28.biblioteca;
 
+import com.twu28.biblioteca.option.ShowBookList;
 import com.twu28.biblioteca.user.User;
 import com.twu28.biblioteca.option.Option;
 
 import java.awt.*;
 
 public class Library {
-    public User currentUser = new User(null, null);
-    
+    User currentUser = new User(null, null);
+    private Option option;
+
     void runLibraryApplication() {
         /*
          * Good separation of steps.
@@ -15,16 +17,17 @@ public class Library {
          * Separation of concerns is *the* single most important guideline when building IT systems.
          */
         showMenuOption();
+        createMenuOption();
         runMenuOption();
     }
 
 
-    private void runMenuOption() {
-        createOption().run(currentUser);
+    void runMenuOption() {
+        option.run(currentUser);
     }
 
-    private Option createOption() {
-        return Option.createOption(getOptionNumber(new Command()));
+    private void createMenuOption() {
+        option = Option.createOption(getOptionNumber(new Command()));
     }
 
     int getOptionNumber(Command command) {
@@ -47,4 +50,7 @@ public class Library {
         return inputNumber > 0 && inputNumber <= Option.TOTAL_OPTION_NUMBER;
     }
 
+    void setOption(Option option) {
+        this.option = option;
+    }
 }

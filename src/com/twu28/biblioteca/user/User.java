@@ -45,8 +45,8 @@ public class User {
     }
 
     private void inputUsernameAndPassword() {
-        inputUsername = inputUsername();
-        inputPassword = inputPassword();
+        inputUsername = inputUsername(new Command());
+        inputPassword = inputPassword(new Command());
     }
 
     private boolean isValidUser() {
@@ -85,12 +85,12 @@ public class User {
         Application.colorOutput.println("Wrong username!", Color.RED, Color.BLACK);
     }
 
-    private String inputUsername() {
-        return new Command().getNextString("Please input your username");
+    public String inputUsername(Command command) {
+        return command.getNextString("Please input your username");
     }
 
-    private String inputPassword() {
-        return new Command().getNextString("Please input your password");
+    public String inputPassword(Command command) {
+        return command.getNextString("Please input your password");
     }
 
     void addBookToCollection(int bookNumber) {

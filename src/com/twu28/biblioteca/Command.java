@@ -12,9 +12,6 @@ public class Command {
         return scanner.nextInt();
     }
 
-    /*
-     * need to be test
-     */
     public String getNextString(String message) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(message);
