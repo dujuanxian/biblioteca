@@ -46,7 +46,7 @@ public class Library {
         Application.colorOutput.println("5: Quit Application", Color.LIGHT_GRAY, Color.BLACK);
     }
 
-    private boolean isValidOption(int inputNumber) {
+    boolean isValidOption(int inputNumber) {
         return inputNumber > 0 && inputNumber <= Option.TOTAL_OPTION_NUMBER;
     }
 

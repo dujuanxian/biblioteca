@@ -5,8 +5,11 @@ import com.twu28.biblioteca.option.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class LibraryTest {
     private Library myLibrary;
@@ -50,5 +53,17 @@ public class LibraryTest {
         myLibrary.setOption(mockQuitApplication);
         myLibrary.runMenuOption();
         verify(mockQuitApplication).run(myLibrary.currentUser);
+    }
+    @Test
+    public void testOptionNumber(){
+        Command mockCommand = mock(Command.class);
+        when(mockCommand.getNextInt("Input the number of the menu option between 1 to " +
+                Option.TOTAL_OPTION_NUMBER)).thenReturn(1);
+        int optionNumber = myLibrary.getOptionNumber(mockCommand);
+        assertThat(optionNumber, is(1));
+    }
+    @Test
+    public void testIsValidOptionWithInput1(){
+        assertThat(myLibrary.isValidOption(1), is(true));
     }
 }
