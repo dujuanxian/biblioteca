@@ -27,28 +27,18 @@ public class CommandTest {
         assertThat(Application.myLibrary.getOptionNumber(commandMock), is(3));
     }
     @Test
-    public void getUsernameCalledInputUserUsernameClass(){
-        User user = new User(null, null);
-        when(commandMock.getNextString("Please input your username")).thenReturn("111-1111");
-        String username = user.inputUsername(commandMock);
-        assertThat(username, is("111-1111"));
-    }
-    @Test
-    public void getPasswordCalledInputUserPasswordClass(){
-        User user = new User(null, null);
-        when(commandMock.getNextString("Please input your password")).thenReturn("admin");
-        String password = user.inputPassword(commandMock);
-        assertThat(password, is("admin"));
-    }
-
-    @Test
     public void getNotificationWhenOutsideBoundsOfOptionNumber() throws Exception {
         when(commandMock.getNextInt("Input the number of the menu option between 1 to " +
                 +Option.TOTAL_OPTION_NUMBER)).thenReturn(99);
         when(commandMock.getNextInt("Wrong number, try again.")).thenReturn(3);
-
         Application.myLibrary.getOptionNumber(commandMock);
-
         verify(commandMock).getNextInt("Wrong number, try again.");
+    }
+    @Test
+    public void getUsernameCalledInputUserUsernameClass(){
+        User user = new User(null, null);
+        when(commandMock.getNextString("Please input your username")).thenReturn("111-1111");
+        user.inputUsername(commandMock);
+        assertThat(user.getUsername(), is("111-1111"));
     }
 }

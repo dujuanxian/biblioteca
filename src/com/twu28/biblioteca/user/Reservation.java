@@ -1,6 +1,7 @@
 package com.twu28.biblioteca.user;
 
 import com.twu28.biblioteca.Application;
+import com.twu28.biblioteca.Command;
 import com.twu28.biblioteca.book.Book;
 import com.twu28.biblioteca.book.BookList;
 
@@ -8,31 +9,39 @@ import java.awt.*;
 
 public class Reservation {
 
-    public void reserveBook(int bookNumber, User user) {
-        if (user.isLogin()) 
-            reserveBookIfLogin(bookNumber, user);
-        else {
-            reserveBookAfterLogin(bookNumber, user);
+    private User user;
+
+    public void reserveBook() {
+        int bookNumber = getInputCommand(new Command());
+        if (user.isLogin()) {
+            reserveBookIfLogin(bookNumber);
+        } else {
+            reserveBookAfterLogin(bookNumber);
         }
     }
 
-    private void reserveBookAfterLogin(int bookNumber, User user) {
+    private void reserveBookAfterLogin(int bookNumber) {
         user.login();
-        if(user.isLogin())
-            reserveBookIfLogin(bookNumber, user);
+        if (user.isLogin())
+            reserveBookIfLogin(bookNumber);
     }
 
-    private void reserveBookIfLogin(int bookNumber, User user) {
+    void reserveBookIfLogin(int bookNumber) {
         if (!isValidBook(bookNumber)) {
             notifyFailedReservation();
-        } else if (isReserved(bookNumber, user)) {
+        } else if (isReserved(bookNumber)) {
             notifyBookAlreadyReserved();
         } else {
-            addBookToCollection(bookNumber, user);
+            addBookToCollection(bookNumber);
         }
     }
 
-    private void addBookToCollection(int bookNumber, User user) {
+    private int getInputCommand(Command command) {
+        return command.getNextInt("Input the number of book between 1 and " +
+                BookList.getBookList().size() + "(input '0' back to option menu):");
+    }
+
+    private void addBookToCollection(int bookNumber) {
         user.addBookToCollection(bookNumber);
         notifySuccessReservation();
     }
@@ -41,7 +50,7 @@ public class Reservation {
         return BookList.getBookList().get(inputNumber - 1);
     }
 
-    private boolean isReserved(int bookNumber, User user) {
+    private boolean isReserved(int bookNumber) {
         return user.getCollectionList().contains(getBook(bookNumber));
     }
 
@@ -49,7 +58,7 @@ public class Reservation {
         return bookNumber > 0 && bookNumber <= BookList.getBookList().size();
     }
 
-    private void notifyFailedReservation() {
+    void notifyFailedReservation() {
         Application.colorOutput.println("Sorry we don't have that book yet.", Color.RED, Color.BLACK);
     }
 
@@ -59,5 +68,10 @@ public class Reservation {
 
     private void notifySuccessReservation() {
         Application.colorOutput.println("Thank You! Enjoy the book.", Color.RED, Color.BLACK);
+    }
+
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

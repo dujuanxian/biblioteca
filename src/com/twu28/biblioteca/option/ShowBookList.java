@@ -16,12 +16,9 @@ public class ShowBookList extends Option {
     }
 
     private void reserveSelectedBook(User currentUser) {
-        new Reservation().reserveBook(getInputCommand(new Command()), currentUser);
-    }
-
-    private int getInputCommand(Command command) {
-        return command.getNextInt("Input the number of book between 1 and " +
-                BookList.getBookList().size() + "(input '0' back to option menu):");
+        Reservation reservation = new Reservation();
+        reservation.setUser(currentUser);
+        reservation.reserveBook();
     }
 
     public void showAllBooks() {

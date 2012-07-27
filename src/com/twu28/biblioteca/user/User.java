@@ -14,8 +14,8 @@ public class User {
     private String username;
     private String password;
     private boolean loginStatus;
-    private String inputUsername;
-    private String inputPassword;
+    private String inputtedUsername;
+    private String inputtedPassword;
 
     public User(String username, String password) {
         this.username = username;
@@ -36,17 +36,17 @@ public class User {
         initializeUser();
     }
 
-    private void initializeUser() {
+    void initializeUser() {
         if (isValidUser()) {
-            this.username = inputUsername;
-            this.password = inputPassword;
+            this.username = inputtedUsername;
+            this.password = inputtedPassword;
             loginStatus = true;
         }
     }
 
     private void inputUsernameAndPassword() {
-        inputUsername = inputUsername(new Command());
-        inputPassword = inputPassword(new Command());
+        inputUsername(new Command());
+        inputPassword(new Command());
     }
 
     private boolean isValidUser() {
@@ -55,7 +55,7 @@ public class User {
 
     private boolean isValidPassword() {
         for (User aUser : UserList.getUserList())
-            if (aUser.isUsername(inputUsername) && aUser.isPassword(inputPassword))
+            if (aUser.isUsername(inputtedUsername) && aUser.isPassword(inputtedPassword))
                 return true;
         notifyWrongPassword();
         return false;
@@ -63,7 +63,7 @@ public class User {
 
     private boolean isValidUsername() {
         for (User aUser : UserList.getUserList())
-            if (aUser.isUsername(inputUsername))
+            if (aUser.isUsername(inputtedUsername))
                 return true;
         notifyWrongUsername();
         return false;
@@ -81,16 +81,16 @@ public class User {
         Application.colorOutput.println("Wrong password!", Color.RED, Color.BLACK);
     }
 
-    private void notifyWrongUsername() {
+    public void notifyWrongUsername() {
         Application.colorOutput.println("Wrong username!", Color.RED, Color.BLACK);
     }
 
-    public String inputUsername(Command command) {
-        return command.getNextString("Please input your username");
+    public void inputUsername(Command command) {
+        inputtedUsername = command.getNextString("Please input your username");
     }
 
-    public String inputPassword(Command command) {
-        return command.getNextString("Please input your password");
+    public void inputPassword(Command command) {
+        inputtedPassword = command.getNextString("Please input your password");
     }
 
     void addBookToCollection(int bookNumber) {
