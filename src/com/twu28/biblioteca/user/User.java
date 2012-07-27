@@ -100,4 +100,8 @@ public class User {
     public boolean isLogin() {
         return loginStatus;
     }
+
+    public String getInputtedUsername() {
+        return inputtedUsername;
+    }
 }

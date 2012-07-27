@@ -39,6 +39,6 @@ public class CommandTest {
         User user = new User(null, null);
         when(commandMock.getNextString("Please input your username")).thenReturn("111-1111");
         user.inputUsername(commandMock);
-        assertThat(user.getUsername(), is("111-1111"));
+        assertThat(user.getInputtedUsername(), is("111-1111"));
     }
 }
