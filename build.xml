@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project name="biblioteca" default="run" basedir=".">
 
+
     <property name="src" value="src"/>
+
     <property name="test" value="test"/>
     <property name="dest" value="dest"/>
     <property name="lib" value="lib"/>
+
+    <property name="instrumented.dir" value="dest/instrumented/dir"></property>
+    <property name="classes.dir" value="dest/classes/dir"></property>
+
     <property name="biblioteca_jar" value="biblioteca.jar"/>
     <property name="main-class" value="com.twu28.biblioteca.Application"/>
+
+    <!--<property name="cobertura.dir" value="C:\Users\ashwinid\Documents\GitHub\biblioteca" />-->
+
+    <!--<path id="cobertura.classpath">-->
+        <!--<fileset dir="${cobertura.dir}">-->
+            <!--<include name="cobertura.jar" />-->
+            <!--<include name="lib/**/*.jar" />-->
+        <!--</fileset>-->
+    <!--</path>-->
+
+
 
     <path id="lib_classpath">
         <fileset dir="${lib}">
@@ -14,11 +31,15 @@
         </fileset>
     </path>
 
+    <taskdef classpathref="lib_classpath" resource="tasks.properties" />
+
     <target name="init">
         <mkdir dir="${dest}"/>
+        <mkdir dir="${instrumented.dir}"/>
+        <mkdir dir="${classes.dir}"/>
     </target>
 
-    <target name="compile" depends="init">
+       <target name="compile" depends="init">
         <javac encoding="utf-8" srcdir="${src}" destdir="${dest}" includeantruntime="false">
             <classpath refid="lib_classpath"/>
         </javac>
@@ -28,9 +49,28 @@
         </javac>
     </target>
 
+    <target name="instrument" depends="compile">
+        <delete file="cobertura.ser"/>
+        <delete dir="${instrumented.dir}" />
+
+        <cobertura-instrument todir="${instrumented.dir}">
+            <ignore regex="org.apache.log4j.*"/>
+            <fileset dir="${classes.dir}">
+                <include name="**/*.class"/>
+                <exclude name="**/*Test.class"/>
+            </fileset>
+        </cobertura-instrument>
+    </target>
+
     <target name="junit" depends="compile">
-        <junit printsummary="true">
-            <classpath >
+
+
+        <junit printsummary="true" fork="yes" dir="${src}" failureProperty="test.failed">
+            <classpath refid="lib_classpath" />
+
+            <sysproperty key="net.sourceforge.cobertura.datafile"
+                         file="${basedir}/cobertura.ser" />
+                <classpath >
                 <pathelement path="${dest}"/>
                 <fileset dir="${lib}">
                     <include name="**/*.jar"/>
@@ -43,7 +83,9 @@
                 </fileset>
             </batchtest>
         </junit>
+
     </target>
+
 
     <target name="build" depends="junit">
         <jar jarfile="${biblioteca_jar}" basedir="${dest}">
